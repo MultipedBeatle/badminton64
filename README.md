@@ -41,6 +41,8 @@ This is a fork of the ultrasm64 repo by CrashOveride which includes the followin
 - The "far" variable is now u16, allowing you to increase the farclip (the max distance at which geometry is rendered). However, when increasing the farclip, make sure to increase the nearclip by the same ratio, or rendering will break on console and LLE plugins. 
 - Many general use defines for object struct members, meant for use in custom object behaviors. Check `object_fields.h` for more info on this. (By MrComit)
 - Included `actors/group0.c` in `behavior_data.c`
+- The internal ROM name is now set with a define in `config.h` to make it simpler
+- There is a `gIsConsole` variable that is 1 when running on console and 0 when running on emulator. This way you can wrap your code in a console check.
 
 **Other Bugfixes:**
 - Castle music fix (Fixes the castle music sometimes triggering after getting a dialog) *
@@ -58,6 +60,8 @@ This is a fork of the ultrasm64 repo by CrashOveride which includes the followin
 - Widescreen (16:9) support toggleable by pressing `L` in the pause menu. *
 - S2DEX engine by someone2639! To use it, compile with `make TEXT_ENGINE=s2dex_text_engine` or just set `TEXT_ENGINE` to `s2dex_text_engine` in the makefile.
 - ia8 coins (64x64), the vanilla coin texture is upgraded to accomodate.
+- Skybox size modifier. You can have 2x, 3x and 4x size skyboxes (you can select the skybox size in `config.h`.) Please note that this might affect console performance, especially 4x mode. 2x or 3x mode is recommended if aiming for console. By CowQuack
+- You can set the black border size to different values for console and emulator. It's set to 0 by default for both.
 
 # UltraSM64
 

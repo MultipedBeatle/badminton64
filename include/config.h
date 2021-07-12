@@ -35,20 +35,19 @@
 
 // Border Height Define for NTSC Versions
 #ifdef TARGET_N64
-#ifndef VERSION_EU
-#define BORDER_HEIGHT 0
-#else
-#define BORDER_HEIGHT 0
-#endif
-#else
-// What's the point of having a border?
-#define BORDER_HEIGHT 0
+// Size of the black border at the top and bottom of the screen. You can set it to different values for console and emulator.
+// There is generally no reason to have a value other than 0 for emulator. As for console, it provides a (small) performance boost.
+#define BORDER_HEIGHT_CONSOLE 0
+#define BORDER_HEIGHT_EMULATOR 0
 
 #endif
 
 // -- ultrasm64-extbounds specific settings --
 
 // COMMON HACK CHANGES
+// Internal ROM name. NEEDS TO BE **EXACTLY** 20 CHARACTERS. Can't be 19 characters, can't be 21 characters. You can fill it with spaces.
+// The end quote should be here:               "
+#define INTERNAL_ROM_NAME "SUPERMARIO64        "
 // Disable lives and hide the lives counter
 #define DISABLE_LIVES
 // Skip peach letter cutscene
@@ -73,6 +72,9 @@
 //#define SKIP_TITLE_SCREEN
 // Uncomment this if you want to keep the mario head and not skip it
 //#define KEEP_MARIO_HEAD
+// Makes the coins ia8 64x64 instead of ia16 32x32. Uses new ia8 textures so that vanilla coins look better.
+#define IA8_COINS
+
 
 // HACKER QOL 
 // Enable widescreen (16:9) support
@@ -117,6 +119,12 @@
 #define EXIT_COURSE_AREA 0x01
 // Decides the warp node "exit course" takes you to (has no effect if you disable exit course)
 #define EXIT_COURSE_NODE 0x1F
+
+// OTHER ENHANCEMENTS
+// Skybox size modifier, changing this will add support for larger skybox images. NOTE: Vanilla skyboxes may break if you change this option. Be sure to rescale them accordingly.
+// Whenever you change this, make sure to run "make -C tools clean" to rebuild the skybox tool (alternatively go into skyconv.c and change the file in any way (like adding/deleting a space) to specifically rebuild that tool).
+// When increasing this, you should probably also increase the GFX pool size. (the GFX_POOL_SIZE define in src/game/game_init.h)
+#define SKYBOX_SIZE 1
 
 // If you want to change the extended boundaries mode, go to engine/extended_bounds.h and change EXTENDED_BOUNDS_MODE
 
